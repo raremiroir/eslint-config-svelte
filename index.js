@@ -98,7 +98,7 @@ module.exports = {
     "yoda": "error",
     "object-curly-spacing": ["warn", "always"],
     // Svelte rules
-    "svelte/no-dupe-else-if-directives": ["error"],     // disallow duplicate else-if directives
+    "svelte/no-dupe-else-if-blocks": ["error"],         // disallow duplicate else-if blocks
     "svelte/no-dupe-on-directives": ["error"],          // disallow duplicate on directives
     "svelte/no-dupe-style-properties": ["error"],       // disallow duplicate style properties
     "svelte/no-dupe-use-directives": ["error"],         // disallow duplicate use directives

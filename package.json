@@ -1,0 +1,79 @@
+{
+  "name": "@miroir/eslint-config-svelte",
+  "version": "0.0.1",
+  "private": false,
+  "description": "ESlint config file for strict Svelte(Kit) formatting",
+  "keywords": [
+    "eslint",
+    "svelte",
+    "eslint-config-svelte",
+    "eslint-plugin-svelte3",
+    "vite"
+  ],
+  "main": "index.js",
+  "author": "Miro Storm Polfliet <miro@mistmedia.be>",
+  "license": "MIT",
+  "homepage": "https://github.com/raremiroir/eslint-config-svelte#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raremiroir/eslint-config-svelte.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raremiroir/eslint-config-svelte/issues"
+  },
+  "scripts": {
+    "release": "release-it"
+  },
+  "dependencies": {
+    "@rushstack/eslint-patch": "^1.7.2",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-svelte": "^2.35.1"
+  },
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
+    "release-it": "^17.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "[chore] release v${version}",
+      "tagName": "eslint-config-vite@${version}"
+    },
+    "github": {
+      "release": true,
+      "autoGenerate": true,
+      "releaseName": "esling-config-vite@${version}",
+      "tokenRef": "GITHUB_TOKEN"
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "perf",
+              "section": "Performance improvements"
+            }
+          ]
+        },
+        "infile": "CHANGELOG.md",
+        "ignoreRecommendedBump": true
+      }
+    }
+  }
+}

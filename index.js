@@ -223,6 +223,7 @@ module.exports = {
       },
     ],
     // Import plugin specific rules
+		"import/no-unresolved": "off",
     "import/no-anonymous-default-export": "off",
     "import/newline-after-import": ["error", { count: 1 }],
     // Import sorting

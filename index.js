@@ -5,15 +5,27 @@
  * https://www.npmjs.com/package/@rushstack/eslint-patch
  */
 
+const { parserOptions } = require("eslint-plugin-import/config/react");
+
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
-  env: { es6: true },
+  root: true,
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./tsconfig.json",
+    extraFileExtensions: [".svelte"],
+  },
   extends: [
+    'eslint:recommended',
     "plugin:svelte/recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
   ],
   plugins: [
     "import",
@@ -22,8 +34,9 @@ module.exports = {
     "simple-import-sort",
     "@typescript-eslint",
   ],
-  parser: "@typescript-eslint/parser",
+  ignorePatterns: [".cjs"],
   settings: {
+		'svelte3/typescript': () => require('typescript'),
     svelte: {
       ignoreWarnings: [
         '@typescript-eslint/no-unsafe-member-access',
@@ -35,10 +48,20 @@ module.exports = {
       }
     }
   },
+	parserOptions: {
+		sourceType: 'module',
+		ecmaVersion: 2020
+	},
+	env: {
+    es6: true,
+		browser: true,
+		es2017: true,
+		node: true
+	},
   overrides: [
     {
       files: ["*.svelte"],
-      processor: "@typescript-eslint/parser",
+			parser: 'svelte-eslint-parser',
       parserOptions: {
         parser: {
           ts: "@typescript-eslint/parser",
@@ -49,6 +72,33 @@ module.exports = {
     }
   ],
   rules: {
+    // Base eslint rules
+    "no-compare-neg-zero": "error",
+    "no-const-assign": "error",
+    "no-constant-condition": "error",
+    "no-debugger": "error",
+    "no-dupe-else-if": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-duplicate-imports": "error",
+    "no-empty-pattern": "error",
+    "no-unused-vars": ["warn", { args: "none" }],
+    "arrow-body-style": ["error", "as-needed"],
+    "no-console": ["error", { allow: ["warn", "error", "info"] }],
+    "no-continue": "error",
+    "no-empty": "warn",
+    "no-empty-function": "warn",
+    "no-empty-static-block": "warn",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "prefer-destructuring": "error",
+    "prefer-exponentiation-operator": "warn",
+    "prefer-object-spread": "error",
+    "prefer-spread": "error",
+    "require-await": "error",
+    "sort-vars": "error",
+    "yoda": "error",
+    "object-curly-spacing": ["warn", "always"],
     // Svelte rules
     "svelte/no-dupe-else-if-directives": ["error"],     // disallow duplicate else-if directives
     "svelte/no-dupe-on-directives": ["error"],          // disallow duplicate on directives
@@ -127,11 +177,33 @@ module.exports = {
     "svelte/spaced-html-comment": [ "error", "always" ],// enforce spaced html comments
     "svelte/no-inner-declarations": [ "error", "functions" ], // disallow inner declarations
     "svelte/no-trailing-spaces": [ "error" ],           // disallow trailing spaces
-    // Other rules
-    "object-curly-spacing": ["warn", "always"],
-    "import/no-anonymous-default-export": "off",
-    "no-unused-vars": "off",
-    "no-console": ["warn", { allow: ["warn", "error", "info"] }],
+    "svelte/sort-attributes": [ "error", {              // sort attributes
+      "order": [
+        "slot",
+        "this",
+        "bind:this",
+        "id",
+        "name",
+        "key",
+        "type",
+        "ref",
+        { // other attributes. (Alphabetical order within the same group.)
+          "match": ["!/:/u", "!/^(?:this|id|name|style|class)$/u", "!/^--/u"],
+          "sort": "alphabetical"
+        },
+        ["/^bind:/u", "!bind:this", "/^on:/u"],                 // `bind:` directives (other then `bind:this`), and `on:` directives.
+        { "match": "/^transition:/u", "sort": "alphabetical" }, // `transition:` directive.
+        { "match": "/^in:/u", "sort": "alphabetical" },         // `in:` directive.
+        { "match": "/^out:/u", "sort": "alphabetical" },        // `out:` directive.
+        { "match": "/^animate:/u", "sort": "alphabetical" },    // `animate:` directive.
+        { "match": "/^--/u", "sort": "alphabetical" },          // `--style-props` (Alphabetical order within the same group.)
+        ["style", "/^style:/u"],                                // `style` attribute, and `style:` directives.
+        { "match": "/^let:/u", "sort": "alphabetical" },        // `let:` directives. (Alphabetical order within the same group.)
+        "class",
+        { "match": "/^class:/u", "sort": "alphabetical" },      // `class:` directives. (Alphabetical order within the same group.)
+        { "match": "/^use:/u", "sort": "alphabetical" },        // `use:` directives. (Alphabetical order within the same group.)
+      ]
+    }],
     // TypeScript specific rules
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-empty-interface": [
@@ -152,27 +224,71 @@ module.exports = {
         varsIgnorePattern: "^_",
       },
     ],
+    // Import plugin specific rules
+    "import/no-anonymous-default-export": "off",
     "import/newline-after-import": ["error", { count: 1 }],
-    "simple-import-sort/imports": [
-      "warn",
-      {
-        groups: [
-          ["^\\u0000"],
-          ["^@?\\w"],
-          ["^config"],
-          ["^[^.]"],
-          ["^assets"],
-          ["^packages"],
-          ["^utils"],
-          [
-            "^types|^store|^services|^constants|^hooks|^theme|^connectors|^queries",
-          ],
-          ["^pages"],
-          ["^components"],
-          ["^\\."],
-        ],
+    // Import sorting
+    "import/order": [ "error", {
+      "newlines-between": "always",
+      groups: [
+        "builtin",
+        "external",
+        "internal",
+        ["parent", "sibling"],
+        "index",
+      ],
+      pathGroups: [
+        {
+          pattern: "$app/**/*",
+          group: "external",
+          position: "before",
+        },
+        {
+          pattern: "$lib/assets/**/*",
+          group: "internal",
+          position: "after",
+        },
+        {
+          pattern: "$lib/components/**/*",
+          group: "internal",
+          position: "after",
+        },
+        {
+          pattern: "$lib/**/*",
+          group: "internal",
+          position: "after",
+        },
+        {
+          pattern: "{svelte,*.svelte}",
+          group: "internal",
+          position: "after"
+        }
+      ],
+      alphabetize: { 
+        order: "asc",
+        caseInsensitive: true
       },
-    ],
-    "simple-import-sort/exports": "warn",
+    }]
+    // "simple-import-sort/imports": [
+    //   "error",
+    //   {
+    //     groups: [
+    //       ["^\\u0000"],
+    //       ["^@?\\w"],
+    //       ["^config"],
+    //       ["^[^.]"],
+    //       ["^assets"],
+    //       ["^packages"],
+    //       ["^utils"],
+    //       [
+    //         "^types|^store|^services|^constants|^hooks|^theme|^connectors|^queries",
+    //       ],
+    //       ["^pages"],
+    //       ["^components"],
+    //       ["^\\."],
+    //     ],
+    //   },
+    // ],
+    // "simple-import-sort/exports": "warn",
   },
 };

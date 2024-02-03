@@ -1,13 +1,12 @@
 {
   "name": "@miroir/eslint-config-svelte",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "ESlint config file for strict Svelte(Kit) formatting",
   "keywords": [
     "eslint",
     "svelte",
     "eslint-config-svelte",
-    "eslint-plugin-svelte3",
     "vite"
   ],
   "main": "index.js",

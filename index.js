@@ -29,14 +29,12 @@ module.exports = {
   ],
   plugins: [
     "import",
-    "svelte3",
     "prettier",
     "simple-import-sort",
     "@typescript-eslint",
   ],
   ignorePatterns: [".cjs"],
   settings: {
-		'svelte3/typescript': () => require('typescript'),
     svelte: {
       ignoreWarnings: [
         '@typescript-eslint/no-unsafe-member-access',

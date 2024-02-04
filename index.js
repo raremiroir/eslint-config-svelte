@@ -83,7 +83,7 @@ module.exports = {
     "no-dupe-else-if": "error",                         // disallow duplicate else if blocks
     "no-dupe-keys": "error",                            // disallow duplicate keys in object literals
     "no-duplicate-case": "error",                       // disallow duplicate case labels in a switch statement
-    "no-duplicate-imports": "error",                    // disallow duplicate imports
+    // "no-duplicate-imports": "error",                 // disallow duplicate imports (not applicable for svelte)
     "no-else-return": "error",                          // disallow else after a return in an if statement
     "no-empty-pattern": "error",                        // disallow empty destructuring patterns
     "no-process-exit": "error",                         // disallow process.exit()
@@ -110,7 +110,7 @@ module.exports = {
     // Prettier
     "prettier/prettier": [ "error", {
       "usePrettierrc": false,                           // whether to use prettier configuration file
-      "parser": "typescript",                           // specify parser
+      "parser": "typescript",                        // specify parser
       "fileInfoOptions": {                              // specify fileInfo options
         "withNodeModules": true,
         "ignorePath": ".prettierignore",
@@ -130,8 +130,7 @@ module.exports = {
       "bracketSpacing": true,                           // use bracket spacing
       "endOfLine": "lf",
       "bracketSameLine": false,                         // always end multiline html elements with bracket on new line
-      "bracketSpacing": true,                           // use bracket spacing
-      "proseWrap": "always",                            // always wrap prose
+      // "proseWrap": "always",                            // always wrap prose
       "semi": true,                                     // always use semicolons
       "quoteProps": "as-needed",                        // quote object properties as needed
       "embeddedLanguageFormatting": "auto",
@@ -141,7 +140,7 @@ module.exports = {
       "overrides": [{
         "files": "*.svelte",
         "options": {
-          "parser": "svelte"
+          "parser": "html"
         },
         "svelteIndentScriptAndStyle": true,               // indent script and style
         "svelteSortOrder": "options-scripts-markup-styles",// sort order

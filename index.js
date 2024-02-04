@@ -119,58 +119,58 @@ module.exports = {
         "prettier-plugin-svelte",
         "prettier-plugin-tailwindcss",
       ],
+      "useTabs": false,                                 // indent with tabs
+      "tabWidth": 2,                                    // specify indentation spaces
+      "singleQuote": true,                              // use single quotes
+      "trailingComma": "all",                           // always use trailing comma
+      "printWidth": 96,                                 // specify the line length printer will wrap on
+      "arrowParens": "always",                          // always use parentheses in arrow functions
+      "bracketSpacing": true,                           // use bracket spacing
+      "endOfLine": "auto",
+      "bracketSameLine": false,                         // always end multiline html elements with bracket on new line
+      "bracketSpacing": true,                           // use bracket spacing
+      "proseWrap": "always",                            // always wrap prose
+      "semi": true,                                     // always use semicolons
+      "quoteProps": "as-needed",                        // quote object properties as needed
+      "embeddedLanguageFormatting": "auto",
+      "htmlWhitespaceSensitivity": "css",               // enforce strict whitespace sensitivity
+      // Svelte related configuration
+      "overrides": [{
+        "files": "*.svelte",
+        "options": {
+          "parser": "svelte"
+        },
+        "svelteIndentScriptAndStyle": true,               // indent script and style
+        "svelteSortOrder": "options-scripts-markup-styles",// sort order
+        "svelteStrictMode": false,                        // do not enforce strict mode
+        "svelteAllowShorthand": true,                     // allow shorthand
+        "svelteBracketNewLine": true,                     // always end multiline html elements with bracket on new line
+        // Tailwind CSS configuration
+        "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
+        // Import order
+        "importOrder": [
+          '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
+          '',
+          '<THIRD_PARTY_MODULES>',                      // third party modules
+          '',
+          '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
+          '<TYPES>^[.]',                                // type definitions
+          '',
+          '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
+          '',
+          '[$|@](lib\/)?stores(\/(.*))?$',              // assets
+          '', 
+          '[$|@](lib\/)?assets(\/(.*))?$',              // assets
+          '', 
+          '[$|@](lib\/)?styles(\/(.*))?$',              // assets
+          '', 
+          '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
+          '', 
+          '^[./]'                                       // local files
+        ],
+        "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy'],
+        "importOrderTypeScriptVersion": '5.0.0',
     }],
-    "useTabs": false,                                 // indent with tabs
-    "tabWidth": 2,                                    // specify indentation spaces
-    "singleQuote": true,                              // use single quotes
-    "trailingComma": "all",                           // always use trailing comma
-    "printWidth": 96,                                 // specify the line length printer will wrap on
-    "arrowParens": "always",                          // always use parentheses in arrow functions
-    "bracketSpacing": true,                           // use bracket spacing
-    "endOfLine": "auto",
-    "bracketSameLine": false,                         // always end multiline html elements with bracket on new line
-    "bracketSpacing": true,                           // use bracket spacing
-    "proseWrap": "always",                            // always wrap prose
-    "semi": true,                                     // always use semicolons
-    "quoteProps": "as-needed",                        // quote object properties as needed
-    "embeddedLanguageFormatting": "auto",
-    "htmlWhitespaceSensitivity": "css",               // enforce strict whitespace sensitivity
-    // Svelte related configuration
-    "overrides": [{
-      "files": "*.svelte",
-      "options": {
-        "parser": "svelte"
-      },
-      "svelteIndentScriptAndStyle": true,               // indent script and style
-      "svelteSortOrder": "options-scripts-markup-styles",// sort order
-      "svelteStrictMode": false,                        // do not enforce strict mode
-      "svelteAllowShorthand": true,                     // allow shorthand
-      "svelteBracketNewLine": true,                     // always end multiline html elements with bracket on new line
-      // Tailwind CSS configuration
-      "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
-      // Import order
-      "importOrder": [
-        '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
-        '',
-        '<THIRD_PARTY_MODULES>',                      // third party modules
-        '',
-        '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
-        '<TYPES>^[.]',                                // type definitions
-        '',
-        '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
-        '',
-        '[$|@](lib\/)?stores(\/(.*))?$',              // assets
-        '', 
-        '[$|@](lib\/)?assets(\/(.*))?$',              // assets
-        '', 
-        '[$|@](lib\/)?styles(\/(.*))?$',              // assets
-        '', 
-        '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
-        '', 
-        '^[./]'                                       // local files
-      ],
-      "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy'],
-      "importOrderTypeScriptVersion": '5.0.0',
     }],
 
     // Svelte rules

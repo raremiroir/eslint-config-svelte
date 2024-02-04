@@ -27,6 +27,7 @@ module.exports = {
   ],
   plugins: [
     "svelte",
+    "unused-imports",
     "import",
     "prettier",
     "@typescript-eslint",
@@ -110,6 +111,7 @@ module.exports = {
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
 
     // Svelte rules
+    "svelte/unused-export-let": ["error"],              // disallow unused export let
     "svelte/no-dupe-else-if-blocks": ["error"],         // disallow duplicate else-if blocks
     "svelte/no-dupe-on-directives": ["error"],          // disallow duplicate on directives
     "svelte/no-dupe-style-properties": ["error"],       // disallow duplicate style properties
@@ -259,6 +261,7 @@ module.exports = {
     
     
     // Import sorting
+    "unused-imports/no-unused-imports": "error",              // disallow unused imports
     "import/first": "error",                                  // enforce imports to be declared first
     "import/newline-after-import": ["error", { count: 1 }],   // enforce a newline after import statements
     "import/no-absolute-path": "error",                       // disallow the use of absolute paths in import

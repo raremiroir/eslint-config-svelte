@@ -28,7 +28,6 @@ module.exports = {
     "svelte",
     "import",
     "prettier",
-    "simple-import-sort",
     "@typescript-eslint",
   ],
   ignorePatterns: [".cjs"],

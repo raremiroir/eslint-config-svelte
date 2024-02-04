@@ -20,6 +20,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:prettier/recommended",
+    "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
@@ -94,6 +95,7 @@ module.exports = {
     "sort-vars": "error",
     "yoda": "error",
     "object-curly-spacing": ["warn", "always"],
+    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
     // Svelte rules
     "svelte/no-dupe-else-if-blocks": ["error"],         // disallow duplicate else-if blocks
     "svelte/no-dupe-on-directives": ["error"],          // disallow duplicate on directives
@@ -149,7 +151,7 @@ module.exports = {
     }],
     "svelte/max-attributes-per-line": ["error", {       // limit attributes per line
       "multiline": 1,
-      "singleline": 2
+      "singleline": 3
     }],
     "svelte/mustache-spacing": [ "error", {             // enforce mustache binding spacing
       "textExpressions": "never",

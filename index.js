@@ -1,18 +1,10 @@
-/*
- * @rushstack/eslint-patch is used to include plugins as dev
- * dependencies instead of imposing them as peer dependencies
- *
- * https://www.npmjs.com/package/@rushstack/eslint-patch
- */
-
-require("@rushstack/eslint-patch/modern-module-resolution");
-const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
-
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "./tsconfig.json",
+    ecmaVersion: 2020,
+    tsconfigRootDir: __dirname,
+    project: ["./tsconfig.json"],
     extraFileExtensions: [".svelte"],
     sourceType: "module"
   },
@@ -20,7 +12,7 @@ module.exports = {
     'eslint:recommended',
     "plugin:svelte/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -29,7 +21,6 @@ module.exports = {
   plugins: [
     "html",
     "svelte",
-    "unused-imports",
     "import",
     "prettier",
     "@typescript-eslint",
@@ -39,6 +30,7 @@ module.exports = {
     "html/html-extensions": [".html", ".svelte"],
     svelte: {
       ignoreWarnings: [
+        '@typescript-eslint/no-unsafe-assignment',
         '@typescript-eslint/no-unsafe-member-access',
       ],
       kit: {
@@ -55,7 +47,6 @@ module.exports = {
 	env: {
     es6: true,
 		browser: true,
-		es2017: true,
 		node: true
 	},
   overrides: [
@@ -63,11 +54,7 @@ module.exports = {
       files: ["*.svelte"],
 			parser: 'svelte-eslint-parser',
       parserOptions: {
-        parser: {
-          ts: "@typescript-eslint/parser",
-          js: "svelte-eslint-parser",
-          typescript: "@typescript-eslint/parser"
-        },
+        parser: "@typescript-eslint/parser"
       }
     },
   ],
@@ -119,7 +106,6 @@ module.exports = {
         "ignorePath": ".prettierignore",
       },
       "plugins": [
-        // "@ianvs/prettier-plugin-sort-imports",
         "html",
         "prettier-plugin-packagejson",
         "prettier-plugin-svelte",
@@ -160,29 +146,6 @@ module.exports = {
           },
         },
       ],
-      // // Import order
-      // "importOrder": [
-      //   '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
-      //   '',
-      //   '<THIRD_PARTY_MODULES>',                      // third party modules
-      //   '',
-      //   '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
-      //   '<TYPES>^[.]',                                // type definitions
-      //   '',
-      //   '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
-      //   '',
-      //   '[$|@](lib\/)?stores(\/(.*))?$',              // assets
-      //   '', 
-      //   '[$|@](lib\/)?assets(\/(.*))?$',              // assets
-      //   '', 
-      //   '[$|@](lib\/)?styles(\/(.*))?$',              // assets
-      //   '', 
-      //   '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
-      //   '', 
-      //   '^[./]'                                       // local files
-      // ],
-      // "importOrderTypeScriptVersion": '5.0.0',
-      // "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy', 'classProperties', 'svelte'],
       // Tailwind CSS configuration
       "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
     }],
@@ -335,7 +298,6 @@ module.exports = {
     }],
     
     // Import sorting
-    // "unused-imports/no-unused-imports": "error",              // disallow unused imports
     "import/first": "error",                                  // enforce imports to be declared first
     "import/newline-after-import": ["error", { count: 1 }],   // enforce a newline after import statements
     "import/no-absolute-path": "error",                       // disallow the use of absolute paths in import
@@ -408,26 +370,5 @@ module.exports = {
         caseInsensitive: true
       },
     }]
-    // "simple-import-sort/imports": [
-    //   "error",
-    //   {
-    //     groups: [
-    //       ["^\\u0000"],
-    //       ["^@?\\w"],
-    //       ["^config"],
-    //       ["^[^.]"],
-    //       ["^assets"],
-    //       ["^packages"],
-    //       ["^utils"],
-    //       [
-    //         "^types|^store|^services|^constants|^hooks|^theme|^connectors|^queries",
-    //       ],
-    //       ["^pages"],
-    //       ["^components"],
-    //       ["^\\."],
-    //     ],
-    //   },
-    // ],
-    // "simple-import-sort/exports": "warn",
   },
 };

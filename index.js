@@ -120,7 +120,7 @@ module.exports = {
       "tabWidth": 2,                                    // specify indentation spaces
       "singleQuote": true,                              // use single quotes
       "trailingComma": "all",                           // always use trailing comma
-      "printWidth": 96,                                 // specify the line length printer will wrap on
+      "printWidth": 144,                                // specify the line length printer will wrap on
       "arrowParens": "always",                          // always use parentheses in arrow functions
       "bracketSpacing": true,                           // use bracket spacing
       "endOfLine": "auto",
@@ -166,7 +166,7 @@ module.exports = {
           '^[./]'                                       // local files
         ],
         "importOrderTypeScriptVersion": '5.0.0',
-        "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy'],
+        "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy', 'classProperties', 'svelte'],
     }],
     }],
 
@@ -198,7 +198,7 @@ module.exports = {
       "ignoreStringEscape": false
     }],
     "svelte/require-each-key": ["error"],               // require each directive to have a key
-    "svelte/prefer-destructured-store-props": ["warn"], // use destructure props syntax with store bindings
+    // "svelte/prefer-destructured-store-props": ["warn"], // use destructure props syntax with store bindings
     "svelte/require-optimized-style-attribute": ["error"], // https://sveltejs.github.io/eslint-plugin-svelte/rules/require-optimized-style-attribute/
     "svelte/derived-has-same-inputs-outputs": ["warn"], // disallow derived stores without input dependencies
     "svelte/first-attribute-linebreak": [ "error", {    // enforce first attribute line break
@@ -217,12 +217,12 @@ module.exports = {
         "avoidInvalidUnquotedInHTML": false
       }
     }],
-    "svelte/indent": ["error", {                        // svelte indentation
-      "indent": 2,
-      "ignoredNodes": [],
-      "switchCase": 1,
-      "alignAttributesVertically": true,
-    }],
+    // "svelte/indent": ["error", {                        // svelte indentation (handled by prettier)
+    //   "indent": 2,
+    //   "ignoredNodes": [],
+    //   "switchCase": 1,
+    //   "alignAttributesVertically": true,
+    // }],
     "svelte/max-attributes-per-line": ["error", {       // limit attributes per line
       "multiline": 1,
       "singleline": 3

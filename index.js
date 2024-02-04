@@ -116,7 +116,7 @@ module.exports = {
         "ignorePath": ".prettierignore",
       },
       "plugins": [
-        "@ianvs/prettier-plugin-sort-imports",
+        // "@ianvs/prettier-plugin-sort-imports",
         "prettier-plugin-packagejson",
         "prettier-plugin-svelte",
         "prettier-plugin-tailwindcss",
@@ -150,29 +150,29 @@ module.exports = {
         "svelteBracketNewLine": true,                     // always end multiline html elements with bracket on new line
         // Tailwind CSS configuration
         "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
-        // Import order
-        "importOrder": [
-          '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
-          '',
-          '<THIRD_PARTY_MODULES>',                      // third party modules
-          '',
-          '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
-          '<TYPES>^[.]',                                // type definitions
-          '',
-          '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
-          '',
-          '[$|@](lib\/)?stores(\/(.*))?$',              // assets
-          '', 
-          '[$|@](lib\/)?assets(\/(.*))?$',              // assets
-          '', 
-          '[$|@](lib\/)?styles(\/(.*))?$',              // assets
-          '', 
-          '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
-          '', 
-          '^[./]'                                       // local files
-        ],
-        "importOrderTypeScriptVersion": '5.0.0',
-        "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy', 'classProperties', 'svelte'],
+        // // Import order
+        // "importOrder": [
+        //   '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
+        //   '',
+        //   '<THIRD_PARTY_MODULES>',                      // third party modules
+        //   '',
+        //   '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
+        //   '<TYPES>^[.]',                                // type definitions
+        //   '',
+        //   '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
+        //   '',
+        //   '[$|@](lib\/)?stores(\/(.*))?$',              // assets
+        //   '', 
+        //   '[$|@](lib\/)?assets(\/(.*))?$',              // assets
+        //   '', 
+        //   '[$|@](lib\/)?styles(\/(.*))?$',              // assets
+        //   '', 
+        //   '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
+        //   '', 
+        //   '^[./]'                                       // local files
+        // ],
+        // "importOrderTypeScriptVersion": '5.0.0',
+        // "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy', 'classProperties', 'svelte'],
     }],
     }],
 
@@ -346,7 +346,8 @@ module.exports = {
         "builtin",
         "external",
         "internal",
-        ["parent", "sibling"],
+        "parent", 
+        "sibling",
         "index",
       ],
       pathGroups: [
@@ -356,24 +357,39 @@ module.exports = {
           position: "before",
         },
         {
-          pattern: "$lib/assets/**/*",
+          pattern: "^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$",
+          group: "external",
+          position: "after",
+        },
+        {
+          pattern: "[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$",
+          group: "internal",
+          position: "before",
+        },
+        {
+          pattern: "[$|@](lib\/)?stores(\/(.*))?$",
           group: "internal",
           position: "after",
         },
         {
-          pattern: "$lib/components/**/*",
-          group: "internal",
-          position: "after",
+          pattern: "[$|@](lib\/)?assets(\/(.*))?$",
+          group: "parent",
+          position: "before",
         },
         {
-          pattern: "$lib/**/*",
-          group: "internal",
-          position: "after",
+          pattern: "[$|@](lib\/)?styles(\/(.*))?$",
+          group: "parent",
+          position: "before",
+        },
+        {
+          pattern: "^[$|@](lib\/)?comp(onents)?(\/(.*))?$",
+          group: "parent",
+          position: "before",
         },
         {
           pattern: "{svelte,*.svelte}",
-          group: "internal",
-          position: "after"
+          group: "parent",
+          position: "before"
         }
       ],
       alphabetize: { 

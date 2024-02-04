@@ -65,37 +65,50 @@ module.exports = {
           typescript: "@typescript-eslint/parser"
         },
       }
-    }
+    },
   ],
   rules: {
+    // make sure we're not leveraging any deprecated APIs
+    'deprecation/deprecation': 'error',
     // Base eslint rules
-    "no-compare-neg-zero": "error",
-    "no-const-assign": "error",
-    "no-constant-condition": "error",
-    "no-debugger": "error",
-    "no-dupe-else-if": "error",
-    "no-dupe-keys": "error",
-    "no-duplicate-case": "error",
-    "no-duplicate-imports": "error",
-    "no-empty-pattern": "error",
-    "no-unused-vars": ["warn", { args: "none" }],
-    "arrow-body-style": ["error", "as-needed"],
-    "no-console": ["error", { allow: ["warn", "error", "info"] }],
-    "no-continue": "error",
-    "no-empty": "warn",
-    "no-empty-function": "warn",
-    "no-empty-static-block": "warn",
-    "prefer-arrow-callback": "error",
-    "prefer-const": "error",
-    "prefer-destructuring": "error",
-    "prefer-exponentiation-operator": "warn",
-    "prefer-object-spread": "error",
-    "prefer-spread": "error",
-    "require-await": "error",
-    "sort-vars": "error",
-    "yoda": "error",
-    "object-curly-spacing": ["warn", "always"],
+    "curly": [ "error", "multi-line" ],                 // enforce brace style
+    "eqeqeq": ["error", "always", {                     // require use of === and !==
+      "null": "ignore"
+    }],
+    "logical-assignment-operators": ["warn"],           // disallow logical assignment operators in conditional expression
+    "no-compare-neg-zero": "error",                     // disallow comparing against negative zero
+    "no-console": ["error", { allow: ["warn", "error", "info"] }], // disallow console
+    "no-const-assign": "error",                         // disallow reassigning const variables
+    "no-constant-condition": "error",                   // disallow constant expressions in conditions
+    "no-debugger": "error",                             // disallow debugger
+    "no-dupe-else-if": "error",                         // disallow duplicate else if blocks
+    "no-dupe-keys": "error",                            // disallow duplicate keys in object literals
+    "no-duplicate-case": "error",                       // disallow duplicate case labels in a switch statement
+    "no-duplicate-imports": "error",                    // disallow duplicate imports
+    "no-else-return": "error",                          // disallow else after a return in an if statement
+    "no-empty-pattern": "error",                        // disallow empty destructuring patterns
+    "no-mixed-operator": "error",                       // disallow mixing certain operators
+    "no-process-exit": "error",                         // disallow process.exit()
+    "no-unused-vars": ["warn", { args: "none" }],       // disallow unused variables
+    "arrow-body-style": ["error", "as-needed"],         // enforce consistent arrow function body style
+    "no-console": ["error", { allow: ["warn", "error", "info"] }],  // disallow console
+    "no-continue": "error",                             // disallow continue statements
+    "no-empty": "warn",                                 // disallow empty block statements
+    "no-empty-function": "warn",                        // disallow empty functions
+    "no-empty-static-block": "warn",                    // disallow empty static block
+    "one-var": ["error", "never"],                      // enforce variables to be declared either together or separately in functions
+    "prefer-arrow-callback": "error",                   // require arrow callbacks
+    "prefer-const": "error",                            // require const over let
+    "prefer-destructuring": "error",                    // require destructuring
+    "prefer-exponentiation-operator": "warn",           // prefer exponentiation operator
+    "prefer-object-spread": "error",                    // require object spread
+    "prefer-spread": "error",                           // require spread operator
+    "require-await": "error",                           // require await in async function
+    "sort-vars": "error",                               // enforce sorted variable declarations
+    "yoda": "error",                                    // disallow yoda conditions
+    "object-curly-spacing": ["error", "always"],         // enforce consistent spacing inside braces
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+
     // Svelte rules
     "svelte/no-dupe-else-if-blocks": ["error"],         // disallow duplicate else-if blocks
     "svelte/no-dupe-on-directives": ["error"],          // disallow duplicate on directives
@@ -201,31 +214,68 @@ module.exports = {
         { "match": "/^use:/u", "sort": "alphabetical" },        // `use:` directives. (Alphabetical order within the same group.)
       ]
     }],
+
     // TypeScript specific rules
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-empty-interface": [
-      "error",
-      {
-        allowSingleExtends: false, 
-      },
-    ],
-    "@typescript-eslint/array-type": ["warn"],
-    "@typescript-eslint/no-non-null-assertion": ["warn"],
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        vars: "all",
-        args: "after-used",
-        ignoreRestSiblings: true,
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_",
-      },
-    ],
-    // Import plugin specific rules
-		"import/no-unresolved": "off",
-    "import/no-anonymous-default-export": "off",
-    "import/newline-after-import": ["error", { count: 1 }],
+    '@typescript-eslint/ban-ts-comment': ["error", {            // enforce consistent ts-comment style
+      'ts-expect-error': 'allow-with-description',
+      'ts-ignore': true,
+      'ts-nocheck': true,
+      'ts-check': false,
+      minimumDescriptionLength: 5,
+    }],
+    '@typescript-eslint/consistent-type-imports': ["error", {    // require types to be imported from their source
+      prefer: 'type-imports', 
+      disallowTypeAnnotations: true 
+    }],
+    "@typescript-eslint/no-explicit-any": "error",              // disallow the use of `any`
+    "@typescript-eslint/no-non-null-assertion": ["warn"],       // disallow non-null-assertions
+    "@typescript-eslint/no-empty-interface": [ "error", {       // disallow empty interfaces
+      allowSingleExtends: false, 
+    }],
+    "@typescript-eslint/array-type": ["warn"],                  // enforce the array type in array
+    '@typescript-eslint/no-unnecessary-condition': ["error", {  // disallow unnecessary conditions
+      allowConstantLoopConditions: true 
+    }],
+    "@typescript-eslint/no-unused-vars": [ "warn", { // disallow unused variables
+      vars: "all",              // check all variables
+      args: "after-used",       // check function arguments
+      ignoreRestSiblings: true, // ignore rest siblings
+      argsIgnorePattern: "^_",  // ignore args that start with underscore
+      varsIgnorePattern: "^_",  // ignore vars that start with underscore
+    },],
+    '@typescript-eslint/restrict-template-expressions': ["error", {// enforce template literal expressions
+      allowNumber: true,
+      allowBoolean: true,
+      allowAny: true,
+      allowNullish: true,
+      allowRegExp: true,
+    }],
+    '@typescript-eslint/prefer-nullish-coalescing': ["error", { // enforce nullish-coalescing
+      ignoreConditionalTests: true,
+      ignorePrimitives: true,
+    }],
+    '@typescript-eslint/internal/no-poorly-typed-ts-props': 'error',  // enforce no poorly typed ts props
+    '@typescript-eslint/internal/prefer-ast-types-enum': 'error', // enforce prefer ast types enum
+    
+    
     // Import sorting
+    "import/first": "error",                                  // enforce imports to be declared first
+    "import/newline-after-import": ["error", { count: 1 }],   // enforce a newline after import statements
+    "import/no-absolute-path": "error",                       // disallow the use of absolute paths in import
+    "import-no-amd": "error",                                 // disallow amd
+    "import/no-default-export": "error",                      // disallow default exports
+    "import/no-duplicates": "error",                          // disallow duplicate imports
+    "import/no-extraneous-dependencies": ["error", {          // disallow extraneous dependencies
+      devDependencies: true,
+      peerDependencies: true,
+      optionalDependencies: false,
+    }],
+    "import/no-mutable-exports": "error",                     // disallow mutable exports
+    "import/no-named-default": "error",                       // disallow named default exports
+    "import/no-named-export": "off",                          // everything has to be a named export
+    "import/no-self-import": "error",                         // disallow module to import itself
+		"import/no-unresolved": "off",                            // disallow unresolved imports
+    "import/newline-after-import": ["error", { count: 1 }],
     "import/order": [ "error", {
       "newlines-between": "always",
       groups: [

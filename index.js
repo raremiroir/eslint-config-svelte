@@ -168,8 +168,8 @@ module.exports = {
           '', 
           '^[./]'                                       // local files
         ],
-        "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy'],
         "importOrderTypeScriptVersion": '5.0.0',
+        "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy'],
     }],
     }],
 

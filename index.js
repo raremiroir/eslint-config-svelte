@@ -6,6 +6,7 @@
  */
 
 require("@rushstack/eslint-patch/modern-module-resolution");
+const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 
 module.exports = {
   root: true,
@@ -20,7 +21,6 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:prettier/recommended",
-    "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
@@ -90,7 +90,7 @@ module.exports = {
     "no-empty-pattern": "error",                        // disallow empty destructuring patterns
     "no-mixed-operator": "error",                       // disallow mixing certain operators
     "no-process-exit": "error",                         // disallow process.exit()
-    "no-unused-vars": ["warn", { args: "none" }],       // disallow unused variables
+    "no-unused-vars": ["error", { args: "none" }],       // disallow unused variables
     "arrow-body-style": ["error", "as-needed"],         // enforce consistent arrow function body style
     "no-console": ["error", { allow: ["warn", "error", "info"] }],  // disallow console
     "no-continue": "error",                             // disallow continue statements
@@ -109,6 +109,69 @@ module.exports = {
     "yoda": "error",                                    // disallow yoda conditions
     "object-curly-spacing": ["error", "always"],         // enforce consistent spacing inside braces
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+
+    // Prettier
+    "prettier/prettier": [ "error", {
+      "parser": "typescript",
+      "plugins": [
+        "@ianvs/prettier-plugin-sort-imports",
+        "prettier-plugin-packagejson",
+        "prettier-plugin-svelte",
+        "prettier-plugin-tailwindcss",
+      ],
+    }],
+    "useTabs": false,                                 // indent with tabs
+    "tabWidth": 2,                                    // specify indentation spaces
+    "singleQuote": true,                              // use single quotes
+    "trailingComma": "all",                           // always use trailing comma
+    "printWidth": 96,                                 // specify the line length printer will wrap on
+    "arrowParens": "always",                          // always use parentheses in arrow functions
+    "bracketSpacing": true,                           // use bracket spacing
+    "endOfLine": "auto",
+    "bracketSameLine": false,                         // always end multiline html elements with bracket on new line
+    "bracketSpacing": true,                           // use bracket spacing
+    "proseWrap": "always",                            // always wrap prose
+    "semi": true,                                     // always use semicolons
+    "quoteProps": "as-needed",                        // quote object properties as needed
+    "embeddedLanguageFormatting": "auto",
+    "htmlWhitespaceSensitivity": "css",               // enforce strict whitespace sensitivity
+    // Svelte related configuration
+    "overrides": [{
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      },
+      "svelteIndentScriptAndStyle": true,               // indent script and style
+      "svelteSortOrder": "options-scripts-markup-styles",// sort order
+      "svelteStrictMode": false,                        // do not enforce strict mode
+      "svelteAllowShorthand": true,                     // allow shorthand
+      "svelteBracketNewLine": true,                     // always end multiline html elements with bracket on new line
+      // Tailwind CSS configuration
+      "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
+      // Import order
+      "importOrder": [
+        '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
+        '',
+        '<THIRD_PARTY_MODULES>',                      // third party modules
+        '',
+        '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
+        '<TYPES>^[.]',                                // type definitions
+        '',
+        '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
+        '',
+        '[$|@](lib\/)?stores(\/(.*))?$',              // assets
+        '', 
+        '[$|@](lib\/)?assets(\/(.*))?$',              // assets
+        '', 
+        '[$|@](lib\/)?styles(\/(.*))?$',              // assets
+        '', 
+        '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
+        '', 
+        '^[./]'                                       // local files
+      ],
+      "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy'],
+      "importOrderTypeScriptVersion": '5.0.0',
+    }],
 
     // Svelte rules
     "svelte/unused-export-let": ["error"],              // disallow unused export let
@@ -238,12 +301,13 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-condition': ["error", {  // disallow unnecessary conditions
       allowConstantLoopConditions: true 
     }],
-    "@typescript-eslint/no-unused-vars": [ "warn", { // disallow unused variables
+    "@typescript-eslint/no-unused-vars": [ "error", {           // disallow unused variables
       vars: "all",              // check all variables
       args: "after-used",       // check function arguments
       ignoreRestSiblings: true, // ignore rest siblings
       argsIgnorePattern: "^_",  // ignore args that start with underscore
       varsIgnorePattern: "^_",  // ignore vars that start with underscore
+      // varsIgnorePattern: '^\\$\\$(Props|Events|Slots)$',
     },],
     '@typescript-eslint/restrict-template-expressions': ["error", {// enforce template literal expressions
       allowNumber: true,

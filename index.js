@@ -5,7 +5,7 @@ module.exports = {
     ecmaVersion: 2020,
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
-    extraFileExtensions: [".svelte"],
+    extraFileExtensions: [".svelte",".json",".html"],
     sourceType: "module"
   },
   extends: [
@@ -106,7 +106,6 @@ module.exports = {
         "ignorePath": ".prettierignore",
       },
       "plugins": [
-        "html",
         "prettier-plugin-packagejson",
         "prettier-plugin-svelte",
         "prettier-plugin-tailwindcss",

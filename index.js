@@ -273,9 +273,9 @@ module.exports = {
       allowSingleExtends: false, 
     }],
     "@typescript-eslint/array-type": ["warn"],                  // enforce the array type in array
-    '@typescript-eslint/no-unnecessary-condition': ["error", {  // disallow unnecessary conditions
-      allowConstantLoopConditions: true 
-    }],
+    // '@typescript-eslint/no-unnecessary-condition': ["error", {  // disallow unnecessary conditions (not applicable for svelte - needs parser fix)
+    //   allowConstantLoopConditions: true 
+    // }],
     "@typescript-eslint/no-unused-vars": [ "error", {           // disallow unused variables
       vars: "all",              // check all variables
       args: "after-used",       // check function arguments

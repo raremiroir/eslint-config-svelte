@@ -109,7 +109,7 @@ module.exports = {
 
     // Prettier
     "prettier/prettier": [ "error", {
-      "parser": "typescript",
+      "parser": "svelte",                              // specify svelte parser
       "plugins": [
         "@ianvs/prettier-plugin-sort-imports",
         "prettier-plugin-packagejson",
@@ -329,7 +329,6 @@ module.exports = {
       peerDependencies: true,
       optionalDependencies: false,
     }],
-    "import/no-mutable-exports": "error",                     // disallow mutable exports
     "import/no-named-default": "error",                       // disallow named default exports
     "import/no-named-export": "off",                          // everything has to be a named export
     "import/no-self-import": "error",                         // disallow module to import itself

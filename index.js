@@ -104,12 +104,17 @@ module.exports = {
     "require-await": "error",                           // require await in async function
     "sort-vars": "error",                               // enforce sorted variable declarations
     "yoda": "error",                                    // disallow yoda conditions
-    "object-curly-spacing": ["error", "always"],         // enforce consistent spacing inside braces
+    "object-curly-spacing": ["error", "always"],        // enforce consistent spacing inside braces
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
 
     // Prettier
     "prettier/prettier": [ "error", {
-      "parser": "svelte",                              // specify svelte parser
+      "usePrettierrc": false,                           // whether to use prettier configuration file
+      "parser": "typescript",                           // specify parser
+      "fileInfoOptions": {                              // specify fileInfo options
+        "withNodeModules": true,
+        "ignorePath": ".prettierignore",
+      },
       "plugins": [
         "@ianvs/prettier-plugin-sort-imports",
         "prettier-plugin-packagejson",
@@ -336,7 +341,7 @@ module.exports = {
 		"import/no-unresolved": "off",                            // disallow unresolved imports
     "import/newline-after-import": ["error", { count: 1 }],
     "import/order": [ "error", {
-      "newlines-between": "always",
+      // "newlines-between": "always",
       groups: [
         "builtin",
         "external",

@@ -14,6 +14,7 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json",
     extraFileExtensions: [".svelte"],
+    sourceType: "module"
   },
   extends: [
     'eslint:recommended',
@@ -26,6 +27,7 @@ module.exports = {
     "plugin:import/typescript",
   ],
   plugins: [
+    "html",
     "svelte",
     "unused-imports",
     "import",
@@ -34,6 +36,7 @@ module.exports = {
   ],
   ignorePatterns: [".cjs"],
   settings: {
+    "html/html-extensions": [".html", ".svelte"],
     svelte: {
       ignoreWarnings: [
         '@typescript-eslint/no-unsafe-member-access',
@@ -117,6 +120,7 @@ module.exports = {
       },
       "plugins": [
         // "@ianvs/prettier-plugin-sort-imports",
+        "html",
         "prettier-plugin-packagejson",
         "prettier-plugin-svelte",
         "prettier-plugin-tailwindcss",
@@ -137,42 +141,50 @@ module.exports = {
       "htmlWhitespaceSensitivity": "ignore",            // enforce strict whitespace sensitivity
       // "singleAttributePerLine:": true,                  // enforce single attribute per line
       // Svelte related configuration
-      "overrides": [{
-        "files": "*.svelte",
-        "options": {
-          "parser": "html"
+      "svelteIndentScriptAndStyle": true,               // indent script and style
+      "svelteSortOrder": "options-scripts-markup-styles",// sort order
+      "svelteStrictMode": false,                        // do not enforce strict mode
+      "svelteAllowShorthand": true,                     // allow shorthand
+      "svelteBracketNewLine": true,                     // always end multiline html elements with bracket on new line
+      "overrides": [
+        {
+          "files": "*.svelte",
+          "options": {
+            "parser": "html"
+          },
         },
-        "svelteIndentScriptAndStyle": true,               // indent script and style
-        "svelteSortOrder": "options-scripts-markup-styles",// sort order
-        "svelteStrictMode": false,                        // do not enforce strict mode
-        "svelteAllowShorthand": true,                     // allow shorthand
-        "svelteBracketNewLine": true,                     // always end multiline html elements with bracket on new line
-        // Tailwind CSS configuration
-        "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
-        // // Import order
-        // "importOrder": [
-        //   '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
-        //   '',
-        //   '<THIRD_PARTY_MODULES>',                      // third party modules
-        //   '',
-        //   '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
-        //   '<TYPES>^[.]',                                // type definitions
-        //   '',
-        //   '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
-        //   '',
-        //   '[$|@](lib\/)?stores(\/(.*))?$',              // assets
-        //   '', 
-        //   '[$|@](lib\/)?assets(\/(.*))?$',              // assets
-        //   '', 
-        //   '[$|@](lib\/)?styles(\/(.*))?$',              // assets
-        //   '', 
-        //   '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
-        //   '', 
-        //   '^[./]'                                       // local files
-        // ],
-        // "importOrderTypeScriptVersion": '5.0.0',
-        // "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy', 'classProperties', 'svelte'],
-    }],
+        {
+          "files": "*.html",
+          "options": {
+            "parser": "html"
+          },
+        },
+      ],
+      // // Import order
+      // "importOrder": [
+      //   '<BUILTIN_MODULES>',                          // Node.js built-in modules such as path, fs, etc.
+      //   '',
+      //   '<THIRD_PARTY_MODULES>',                      // third party modules
+      //   '',
+      //   '^[$|@](lib\/)?types(\/(.*).(types|d).ts)?$', // type definitions
+      //   '<TYPES>^[.]',                                // type definitions
+      //   '',
+      //   '[$|@](lib\/)?(config|queries|services|utils)(\/(.*))?$', // project specific modules
+      //   '',
+      //   '[$|@](lib\/)?stores(\/(.*))?$',              // assets
+      //   '', 
+      //   '[$|@](lib\/)?assets(\/(.*))?$',              // assets
+      //   '', 
+      //   '[$|@](lib\/)?styles(\/(.*))?$',              // assets
+      //   '', 
+      //   '^[$|@](lib\/)?comp(onents)?(\/(.*))?$',      // components
+      //   '', 
+      //   '^[./]'                                       // local files
+      // ],
+      // "importOrderTypeScriptVersion": '5.0.0',
+      // "importOrderParserPlugins": ['typescript', 'jsx', 'decorators-legacy', 'classProperties', 'svelte'],
+      // Tailwind CSS configuration
+      "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
     }],
 
     // Svelte rules

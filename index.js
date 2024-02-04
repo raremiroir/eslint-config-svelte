@@ -5,8 +5,6 @@
  * https://www.npmjs.com/package/@rushstack/eslint-patch
  */
 
-const { parserOptions } = require("eslint-plugin-import/config/react");
-
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
@@ -28,6 +26,7 @@ module.exports = {
     "plugin:import/typescript",
   ],
   plugins: [
+    "svelte",
     "import",
     "prettier",
     "simple-import-sort",

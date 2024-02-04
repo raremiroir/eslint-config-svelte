@@ -120,17 +120,18 @@ module.exports = {
       "tabWidth": 2,                                    // specify indentation spaces
       "singleQuote": true,                              // use single quotes
       "trailingComma": "all",                           // always use trailing comma
-      "printWidth": 144,                                // specify the line length printer will wrap on
+      "printWidth": 80,                                 // specify the line length printer will wrap on
       "arrowParens": "always",                          // always use parentheses in arrow functions
       "bracketSpacing": true,                           // use bracket spacing
-      "endOfLine": "auto",
+      "endOfLine": "lf",
       "bracketSameLine": false,                         // always end multiline html elements with bracket on new line
       "bracketSpacing": true,                           // use bracket spacing
       "proseWrap": "always",                            // always wrap prose
       "semi": true,                                     // always use semicolons
       "quoteProps": "as-needed",                        // quote object properties as needed
       "embeddedLanguageFormatting": "auto",
-      "htmlWhitespaceSensitivity": "strict",            // enforce strict whitespace sensitivity
+      "htmlWhitespaceSensitivity": "ignore",            // enforce strict whitespace sensitivity
+      // "singleAttributePerLine:": true,                  // enforce single attribute per line
       // Svelte related configuration
       "overrides": [{
         "files": "*.svelte",

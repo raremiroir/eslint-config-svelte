@@ -69,8 +69,6 @@ module.exports = {
     },
   ],
   rules: {
-    // make sure we're not leveraging any deprecated APIs
-    'deprecation/deprecation': 'error',
     // Base eslint rules
     "curly": [ "error", "multi-line" ],                 // enforce brace style
     "eqeqeq": ["error", "always", {                     // require use of === and !==
@@ -88,9 +86,8 @@ module.exports = {
     "no-duplicate-imports": "error",                    // disallow duplicate imports
     "no-else-return": "error",                          // disallow else after a return in an if statement
     "no-empty-pattern": "error",                        // disallow empty destructuring patterns
-    "no-mixed-operator": "error",                       // disallow mixing certain operators
     "no-process-exit": "error",                         // disallow process.exit()
-    "no-unused-vars": ["error", { args: "none" }],       // disallow unused variables
+    // "no-unused-vars": ["error", { args: "none" }],       // disallow unused variables (enabled in typescript-eslint)
     "arrow-body-style": ["error", "as-needed"],         // enforce consistent arrow function body style
     "no-console": ["error", { allow: ["warn", "error", "info"] }],  // disallow console
     "no-continue": "error",                             // disallow continue statements
@@ -133,7 +130,7 @@ module.exports = {
       "semi": true,                                     // always use semicolons
       "quoteProps": "as-needed",                        // quote object properties as needed
       "embeddedLanguageFormatting": "auto",
-      "htmlWhitespaceSensitivity": "css",               // enforce strict whitespace sensitivity
+      "htmlWhitespaceSensitivity": "strict",            // enforce strict whitespace sensitivity
       // Svelte related configuration
       "overrides": [{
         "files": "*.svelte",
@@ -174,7 +171,6 @@ module.exports = {
     }],
 
     // Svelte rules
-    "svelte/unused-export-let": ["error"],              // disallow unused export let
     "svelte/no-dupe-else-if-blocks": ["error"],         // disallow duplicate else-if blocks
     "svelte/no-dupe-on-directives": ["error"],          // disallow duplicate on directives
     "svelte/no-dupe-style-properties": ["error"],       // disallow duplicate style properties
@@ -320,16 +316,12 @@ module.exports = {
       ignoreConditionalTests: true,
       ignorePrimitives: true,
     }],
-    '@typescript-eslint/internal/no-poorly-typed-ts-props': 'error',  // enforce no poorly typed ts props
-    '@typescript-eslint/internal/prefer-ast-types-enum': 'error', // enforce prefer ast types enum
-    
     
     // Import sorting
-    "unused-imports/no-unused-imports": "error",              // disallow unused imports
+    // "unused-imports/no-unused-imports": "error",              // disallow unused imports
     "import/first": "error",                                  // enforce imports to be declared first
     "import/newline-after-import": ["error", { count: 1 }],   // enforce a newline after import statements
     "import/no-absolute-path": "error",                       // disallow the use of absolute paths in import
-    "import-no-amd": "error",                                 // disallow amd
     "import/no-default-export": "error",                      // disallow default exports
     "import/no-duplicates": "error",                          // disallow duplicate imports
     "import/no-extraneous-dependencies": ["error", {          // disallow extraneous dependencies

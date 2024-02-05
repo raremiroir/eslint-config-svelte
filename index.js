@@ -283,10 +283,6 @@ module.exports = {
       argsIgnorePattern: "^_",  // ignore args that start with underscore
       varsIgnorePattern: "^_",  // ignore vars that start with underscore
       // varsIgnorePattern: '^\\$\\$(Props|Events|Slots)$',
-    },],
-    '@typescript-eslint/prefer-nullish-coalescing': ["error", { // enforce nullish-coalescing
-      ignoreConditionalTests: true,
-      ignorePrimitives: true,
     }],
     
     // Import sorting

@@ -24,7 +24,11 @@ module.exports = {
     "prettier",
     "@typescript-eslint",
   ],
-  ignorePatterns: [".cjs"],
+  ignorePatterns: [
+    ".cjs",
+    "node_modules/",
+    "dist/",
+  ],
   settings: {
     "html/html-extensions": [".html", ".svelte"],
     svelte: {

@@ -2,16 +2,20 @@ module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: {
+    ecmaVersion: 2020,
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
     extraFileExtensions: [".svelte",".json",".html"],
-    sourceType: "module"
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   extends: [
     'eslint:recommended',
     "plugin:svelte/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    // "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
@@ -215,12 +219,12 @@ module.exports = {
       "singleline": 3
     }],
     "svelte/mustache-spacing": [ "error", {             // enforce mustache binding spacing
-      "textExpressions": "never",
-      "attributesAndProps": "never",
-      "directiveExpressions": "never",
+      "textExpressions": "always",
+      "attributesAndProps": "always",
+      "directiveExpressions": "always",
       "tags": {
-        "openingBrace": "never",
-        "closingBrace": "never"
+        "openingBrace": "always",
+        "closingBrace": "always"
       }
     }],
     "svelte/no-extra-reactive-curlies": [ "error" ],    // disallow unnecessary reactive syntax

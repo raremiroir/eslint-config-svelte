@@ -146,6 +146,12 @@ module.exports = {
             "parser": "html"
           },
         },
+        {
+          "files": "*.json",
+          "options": {
+            "parser": "json"
+          },
+        }
       ],
       // Tailwind CSS configuration
       "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config

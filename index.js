@@ -12,9 +12,9 @@ module.exports = {
     },
   },
   extends: [
-    'eslint:recommended',
+    // 'eslint:recommended',
     "plugin:svelte/recommended",
-    "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended",
     // "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -46,10 +46,6 @@ module.exports = {
       }
     }
   },
-	parserOptions: {
-		sourceType: 'module',
-		ecmaVersion: 2020
-	},
 	env: {
     es6: true,
 		browser: true,

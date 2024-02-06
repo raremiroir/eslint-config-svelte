@@ -79,7 +79,7 @@ module.exports = {
     "no-else-return": "error",                          // disallow else after a return in an if statement
     "no-empty-pattern": "error",                        // disallow empty destructuring patterns
     "no-process-exit": "error",                         // disallow process.exit()
-    // "no-unused-vars": ["error", { args: "none" }],       // disallow unused variables (enabled in typescript-eslint)
+    // "no-unused-vars": ["error", { args: "none" }],   // disallow unused variables (enabled in typescript-eslint)
     "arrow-body-style": ["error", "as-needed"],         // enforce consistent arrow function body style
     "no-console": ["error", { allow: ["warn", "error", "info"] }],  // disallow console
     "no-continue": "error",                             // disallow continue statements
@@ -204,7 +204,7 @@ module.exports = {
         "avoidInvalidUnquotedInHTML": false
       }
     }],
-    // "svelte/indent": ["error", {                        // svelte indentation (handled by prettier)
+    // "svelte/indent": ["error", {                     // svelte indentation (handled by prettier)
     //   "indent": 2,
     //   "ignoredNodes": [],
     //   "switchCase": 1,

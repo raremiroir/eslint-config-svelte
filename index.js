@@ -63,6 +63,7 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-non-null-assertion": ["warn"],
+    "@typescript-eslint/no-unresolved": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
@@ -118,7 +119,7 @@ module.exports = {
           {
             files: "*.svelte",
             options: {
-              parser: "html",
+              parser: "svelte",
             },
           },
           {
@@ -153,13 +154,6 @@ module.exports = {
       },
     ],
     "import/newline-after-import": ["error", { count: 1 }],
-    "import/alphabetize": [
-      "error",
-      {
-        order: "asc",
-        caseInsensitive: true,
-      },
-    ],
     "import/order": [
       "error",
       {

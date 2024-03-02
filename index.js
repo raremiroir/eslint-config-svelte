@@ -15,7 +15,12 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:import/typescript",
   ],
-  plugins: ["svelte", "import", "@typescript-eslint"],
+  plugins: [
+    "svelte", 
+    // "import", 
+    "simple-import-sort",
+    "@typescript-eslint"
+  ],
   env: {
     browser: true,
     es2017: true,
@@ -80,80 +85,28 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-var-requires": "off",
-    // Import sorting
-    "import/first": "error", // enforce imports to be declared first
-    "import/newline-after-import": ["error", { count: 1 }], // enforce a newline after import statements
-    "import/no-absolute-path": "error", // disallow the use of absolute paths in import
-    "import/no-duplicates": "error", // disallow duplicate imports
-    "import/no-unresolved": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        // disallow extraneous dependencies
-        devDependencies: true,
-        peerDependencies: true,
-        optionalDependencies: false,
-      },
-    ],
+    // Import sorting rules
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
     "import/newline-after-import": ["error", { count: 1 }],
-    "import/order": [
-      "error",
+    "import/no-duplicates": "error",
+    "import/no-anonymous-default-export": "off",
+    "simple-import-sort/imports": [
+      "warn",
       {
-        // "newlines-between": "always",
         groups: [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
+          ["^\\u0000"],
+          ["^@?\\w"],
+          ["^[$|@]?(lib\/)?config"],
+          ["^[$|@]?(lib\/)?assets"],
+          ["^[$|@]?(lib\/)?types"],
+          ["^[$|@]?(lib\/)?utils"],
+          ["^[$|@]?(lib\/)?(store|stores|services|constants|hooks|queries|data)"],
+          ["^[$|@]?(lib\/)?components"],
+          ["^[^.]"],
+          ["^\\."],
         ],
-        pathGroups: [
-          {
-            pattern: "$app/**/*",
-            group: "external",
-            position: "before",
-          },
-          {
-            pattern: "^[$|@](lib/)?types(/(.*).(types|d).ts)?$",
-            group: "external",
-            position: "after",
-          },
-          {
-            pattern: "[$|@](lib/)?(config|queries|services|utils)(/(.*))?$",
-            group: "internal",
-            position: "before",
-          },
-          {
-            pattern: "[$|@](lib/)?stores(/(.*))?$",
-            group: "internal",
-            position: "after",
-          },
-          {
-            pattern: "[$|@](lib/)?assets(/(.*))?$",
-            group: "parent",
-            position: "before",
-          },
-          {
-            pattern: "[$|@](lib/)?styles(/(.*))?$",
-            group: "parent",
-            position: "before",
-          },
-          {
-            pattern: "^[$|@](lib/)?comp(onents)?(/(.*))?$",
-            group: "parent",
-            position: "before",
-          },
-          {
-            pattern: "{svelte,*.svelte}",
-            group: "parent",
-            position: "before",
-          },
-        ],
-        alphabetize: {
-          order: "asc",
-          caseInsensitive: true,
-        },
       },
     ],
   },

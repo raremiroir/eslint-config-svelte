@@ -192,7 +192,7 @@ module.exports = {
           "error",
           {
             multiline: 1,
-            singleline: 3,
+            singleline: 4,
           },
         ],
         "svelte/mustache-spacing": [
@@ -218,13 +218,7 @@ module.exports = {
             selfClosingTag: "always", // or "never" or "ignore"
           },
         ],
-        "svelte/first-attribute-linebreak": [
-          "error",
-          {
-            multiline: "below",
-            singleline: "beside",
-          },
-        ],
+        "svelte/first-attribute-linebreak": "off",
         "svelte/html-quotes": [
           "error",
           {

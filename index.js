@@ -11,12 +11,11 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:svelte/recommended",
-    "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
   ],
-  plugins: ["svelte", "import", "prettier", "@typescript-eslint"],
+  plugins: ["svelte", "import", "@typescript-eslint"],
   env: {
     browser: true,
     es2017: true,
@@ -81,63 +80,6 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-var-requires": "off",
-    // Prettier rules
-    "prettier/prettier": [
-      "error",
-      {
-        usePrettierrc: false,
-        parser: "typescript",
-        fileInfoOptions: {
-          withNodeModules: true,
-          ignorePath: ".prettierignore",
-        },
-        plugins: [
-          "prettier-plugin-packagejson",
-          "prettier-plugin-svelte",
-          "prettier-plugin-tailwindcss",
-        ],
-        useTabs: false,
-        tabWidth: 2,
-        singleQuote: true,
-        trailingComma: "all",
-        printWidth: 90,
-        arrowParens: "always",
-        bracketSpacing: true,
-        endOfLine: "lf",
-        bracketSameLine: false,
-        semi: true,
-        quoteProps: "as-needed",
-        embeddedLanguageFormatting: "auto",
-        htmlWhitespaceSensitivity: "ignore",
-        // Svelte related configuration
-        svelteIndentScriptAndStyle: true,
-        svelteSortOrder: "options-scripts-markup-styles",
-        svelteStrictMode: true,
-        svelteAllowShorthand: true,
-        overrides: [
-          {
-            files: "*.svelte",
-            options: {
-              parser: "svelte",
-            },
-          },
-          {
-            files: "*.html",
-            options: {
-              parser: "html",
-            },
-          },
-          {
-            files: "*.json",
-            options: {
-              parser: "json",
-            },
-          },
-        ],
-        // Tailwind CSS configuration
-        tailwindConfig: "tailwind.config.ts", // specify tailwind css configuration file, might need to override in project config
-      },
-    ],
     // Import sorting
     "import/first": "error", // enforce imports to be declared first
     "import/newline-after-import": ["error", { count: 1 }], // enforce a newline after import statements

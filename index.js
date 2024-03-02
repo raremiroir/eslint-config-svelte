@@ -124,7 +124,7 @@ module.exports = {
         }
       ],
       // Tailwind CSS configuration
-      "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
+      "tailwindConfig": "tailwind.config.ts",           // specify tailwind css configuration file, might need to override in project config
     }],
 		// Import sorting
 		"import/first": "error",                                  // enforce imports to be declared first

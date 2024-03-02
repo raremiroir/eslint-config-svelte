@@ -59,7 +59,7 @@ module.exports = {
 				"ignoreComments": false
 			}
 		],
-		"indent": ["error", 2, { "SwitchCase": 1 }],
+		"indent": ["error", 2],
     "arrow-body-style": ["error", "as-needed"],
     "yoda": "error",
 		"no-const-assign": "error",

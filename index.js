@@ -87,6 +87,7 @@ module.exports = {
     "import/newline-after-import": ["error", { count: 1 }],
     "import/no-duplicates": "error",
     "import/no-anonymous-default-export": "off",
+    "import/no-unresolved": "off",
     "simple-import-sort/imports": [
       "warn",
       {

@@ -63,7 +63,6 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-non-null-assertion": ["warn"],
-    "@typescript-eslint/no-unresolved": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
@@ -144,6 +143,7 @@ module.exports = {
     "import/newline-after-import": ["error", { count: 1 }], // enforce a newline after import statements
     "import/no-absolute-path": "error", // disallow the use of absolute paths in import
     "import/no-duplicates": "error", // disallow duplicate imports
+    "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

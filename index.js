@@ -15,11 +15,13 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:import/typescript",
   ],
-  plugins: ["svelte", "simple-import-sort", "@typescript-eslint"],
+  plugins: ["svelte", "import", "simple-import-sort", "@typescript-eslint"],
   env: {
     browser: true,
     es2017: true,
-    node: true,
+  },
+  settings: {
+    "import/resolver": "node",
   },
   rules: {
     "no-console": ["warn", { allow: ["warn", "error", "info"] }],

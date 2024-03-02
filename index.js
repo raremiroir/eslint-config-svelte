@@ -73,7 +73,59 @@ module.exports = {
 				"ignoreCase": false
 			}
 		],
-		"prettier/prettier": ["error", {}, { usePrettierrc: true }],
+		"prettier/prettier": [ "error", {
+      "usePrettierrc": false,
+      "parser": "typescript",
+      "fileInfoOptions": {
+        "withNodeModules": true,
+        "ignorePath": ".prettierignore",
+      },
+      "plugins": [
+        "prettier-plugin-packagejson",
+        "prettier-plugin-svelte",
+        "prettier-plugin-tailwindcss",
+      ],
+      "useTabs": false,
+      "tabWidth": 2,
+      "singleQuote": true,
+      "trailingComma": "all",
+      "printWidth": 90,
+      "arrowParens": "always",
+      "bracketSpacing": true,
+      "endOfLine": "lf",
+      "bracketSameLine": false,
+      "semi": true,
+      "quoteProps": "as-needed",
+      "embeddedLanguageFormatting": "auto",
+      "htmlWhitespaceSensitivity": "ignore",
+      // Svelte related configuration
+      "svelteIndentScriptAndStyle": true,
+      "svelteSortOrder": "options-scripts-markup-styles",
+      "svelteStrictMode": true,
+      "svelteAllowShorthand": true,
+      "overrides": [
+        {
+          "files": "*.svelte",
+          "options": {
+            "parser": "html"
+          },
+        },
+        {
+          "files": "*.html",
+          "options": {
+            "parser": "html"
+          },
+        },
+        {
+          "files": "*.json",
+          "options": {
+            "parser": "json"
+          },
+        }
+      ],
+      // Tailwind CSS configuration
+      "tailwindConfig": "tailwind.config.js",           // specify tailwind css configuration file, might need to override in project config
+    }],
 		// Import sorting
 		"import/first": "error",                                  // enforce imports to be declared first
     "import/newline-after-import": ["error", { count: 1 }],   // enforce a newline after import statements

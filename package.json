@@ -1,6 +1,6 @@
 {
   "name": "@miroir/eslint-config-svelte",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "private": false,
   "description": "ESlint config file for strict Svelte(Kit) formatting",
   "keywords": [

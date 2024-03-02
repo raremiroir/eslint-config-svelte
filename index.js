@@ -15,12 +15,7 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:import/typescript",
   ],
-  plugins: [
-    "svelte", 
-    // "import", 
-    "simple-import-sort",
-    "@typescript-eslint"
-  ],
+  plugins: ["svelte", "simple-import-sort", "@typescript-eslint"],
   env: {
     browser: true,
     es2017: true,
@@ -98,12 +93,14 @@ module.exports = {
         groups: [
           ["^\\u0000"],
           ["^@?\\w"],
-          ["^[$|@]?(lib\/)?config"],
-          ["^[$|@]?(lib\/)?assets"],
-          ["^[$|@]?(lib\/)?types"],
-          ["^[$|@]?(lib\/)?utils"],
-          ["^[$|@]?(lib\/)?(store|stores|services|constants|hooks|queries|data)"],
-          ["^[$|@]?(lib\/)?components"],
+          ["^[$|@]?(lib/)?config"],
+          ["^[$|@]?(lib/)?assets"],
+          ["^[$|@]?(lib/)?types"],
+          ["^[$|@]?(lib/)?utils"],
+          [
+            "^[$|@]?(lib/)?(store|stores|services|constants|hooks|queries|data)",
+          ],
+          ["^[$|@]?(lib/)?components"],
           ["^[^.]"],
           ["^\\."],
         ],
@@ -151,12 +148,12 @@ module.exports = {
         "svelte/mustache-spacing": [
           "error",
           {
-            textExpressions: "never", // or "always"
-            attributesAndProps: "never", // or "always"
-            directiveExpressions: "never", // or "always"
+            textExpressions: "never",
+            attributesAndProps: "never",
+            directiveExpressions: "never",
             tags: {
-              openingBrace: "never", // or "always"
-              closingBrace: "never", // or "always" or "always-after-expression"
+              openingBrace: "never",
+              closingBrace: "never",
             },
           },
         ],
@@ -166,9 +163,9 @@ module.exports = {
         "svelte/html-closing-bracket-spacing": [
           "error",
           {
-            startTag: "never", // or "always" or "ignore"
-            endTag: "never", // or "always" or "ignore"
-            selfClosingTag: "always", // or "never" or "ignore"
+            startTag: "never",
+            endTag: "never",
+            selfClosingTag: "always",
           },
         ],
         "svelte/first-attribute-linebreak": "off",

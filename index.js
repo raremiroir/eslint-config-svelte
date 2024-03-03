@@ -65,7 +65,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-non-null-assertion": ["warn"],
     "@typescript-eslint/no-unused-vars": [
-      "warn",
+      "error",
       {
         vars: "all",
         args: "after-used",
@@ -96,14 +96,14 @@ module.exports = {
         groups: [
           ["^\\u0000"],
           ["^@?\\w"],
-          ["^[$|@]?(lib/)?config"],
-          ["^[$|@]?(lib/)?assets"],
-          ["^[$|@]?(lib/)?types"],
-          ["^[$|@]?(lib/)?utils"],
+          ["^[$|@]?(src\/)?(lib\/)?config"],
+          ["^[$|@]?(src\/)?(lib\/)?assets"],
+          ["^[$|@|.]?(src\/)?((lib)?\/)?[$]?(types)?"],
+          ["^[$|@]?(src\/)?(lib\/)?utils"],
           [
-            "^[$|@]?(lib/)?(store|stores|services|constants|hooks|queries|data)",
+            "^[$|@]?(src\/)?(lib\/)?(store|stores|services|constants|hooks|queries|data|paraglide|i18n)",
           ],
-          ["^[$|@]?(lib/)?components"],
+          ["^[$|@]?(src\/)?(lib\/)?components"],
           ["^[^.]"],
           ["^\\."],
         ],
